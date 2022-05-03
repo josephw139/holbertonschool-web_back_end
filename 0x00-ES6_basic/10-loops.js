@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 export default function appendToEachArrayValue(array, appendString) {
-  for (let idx of array) {
-    idx += appendString;
+  const appArray = [];
+  for (const idx of array) {
+    appArray.push(appendString + idx);
   }
 
-  return array;
+  return appArray;
 }
