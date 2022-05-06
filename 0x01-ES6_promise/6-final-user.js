@@ -3,13 +3,11 @@ import uploadPhoto from './5-photo-reject';
 
 export default async function handleProfileSignup(firstName, lastName, fileName) {
   const myObjs = await Promise.allSettled([signUpUser(firstName, lastName), uploadPhoto(fileName)])
-    .then((values) => {
-      return values
-    });
+    .then((values) => values);
 
-  let error = String(myObjs[1].reason);
+  const error = String(myObjs[1].reason);
   delete myObjs[1].reason;
-  myObjs[1]['value'] = error;
+  myObjs[1].value = error;
   console.log(myObjs);
   return myObjs;
 }
