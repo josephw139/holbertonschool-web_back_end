@@ -3,11 +3,11 @@ export default function getListStudentIds(array) {
     return [];
   }
 
-  let idList = array.map(id);
-
   function id(element) {
-    return element['id'];
+    return element.id;
   }
+
+  const idList = array.map(id);
 
   return idList;
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export default function updateStudentGradeByCity(students, city, newGrades) {
   let newList = students.filter(ele => ele['location'] === city);
 
@@ -9,7 +10,7 @@ export default function updateStudentGradeByCity(students, city, newGrades) {
     try {
       student['grade'] = grade[0]['grade'];
     } catch {
-      student['grade'] = 'N/A'
+      student['grade'] = 'N/A';
     }
 
     return student;
