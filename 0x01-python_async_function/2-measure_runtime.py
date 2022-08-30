@@ -8,7 +8,7 @@ import asyncio
 from time import time
 
 
-def measure_time(n, max_delay):
+def measure_time(n: int, max_delay: int) -> float:
     """ measures the time to completion"""
     start = time()
     asyncio.run(wait_n(n, max_delay))
