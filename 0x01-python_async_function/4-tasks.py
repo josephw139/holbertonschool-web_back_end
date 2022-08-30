@@ -10,14 +10,14 @@ from typing import List
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
     """ modified wait_n function """
-    i = 0
     delays = []
     finished: List[float] = []
-    while i < n:
-        delays.append(asyncio.create_task(task_wait_random(max_delay)))
+    for i in range(n):
+        task = asyncio.create_task(task_wait_random(max_delay))
+        delays.append(task)
 
     for task in asyncio.as_completed(delays):
-        done = await task
+        done: float = await task
         finished.append(done)
 
     return finished
