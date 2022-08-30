@@ -9,6 +9,7 @@ from typing import List
 
 
 async def task_wait_n(n: int, max_delay: int) -> List[float]:
+    """ modified wait_n function """
     i = 0
     delays = []
     finished: List[float] = []
