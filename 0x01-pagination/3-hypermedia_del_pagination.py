@@ -40,6 +40,7 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """ calls get_page, returns dict dataset """
         data = self.indexed_dataset()
         total_pages = math.ceil(len(data) / page_size)
         assert index <= len(data)
@@ -47,7 +48,8 @@ class Server:
         start = (page * page_size) + 1
         if index == 0:
             start -= 1
-        next_index =  start + page_size
-        data = self.__dataset[start:next_index]
-        newdict = {'index': start, 'next_index': next_index, 'page_size': page_size, 'data': data}
+        next = start + page_size
+        data = self.__dataset[start:next]
+        newdict = {'index': start, 'next_index': next,
+                   'page_size': page_size, 'data': data}
         return newdict
