@@ -8,6 +8,7 @@ import re
 import logging
 from os import environ
 import mysql.connector
+from typing import List
 
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
@@ -21,7 +22,7 @@ class RedactingFormatter(logging.Formatter):
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
     SEPARATOR = ";"
 
-    def __init__(self, fields):
+    def __init__(self, fields: List[str]):
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
@@ -30,14 +31,15 @@ class RedactingFormatter(logging.Formatter):
         return filter_datum(self.fields, self.REDACTION, f, self.SEPARATOR)
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
     """ returns the log message obfuscated """
     for field in fields:
         newLog = re.sub(f"(?<={field}=).*?(?={separator})", redaction, message)
     return newLog
 
 
-def get_logger():
+def get_logger() -> logging.Logger:
     """ returns a logging.Logger object """
     user_data = logging.getLogger("user_data")
     user_data.setLevel(logging.INFO)
@@ -48,7 +50,7 @@ def get_logger():
     return user_data
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """ connects to mysql database """
     db = mysql.connector.connect(
         host=environ.get("PERSONAL_DATA_DB_HOST"),
