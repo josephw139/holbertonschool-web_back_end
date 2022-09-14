@@ -7,7 +7,7 @@ from xmlrpc.client import Boolean
 import bcrypt
 
 
-def hash_password(password):
+def hash_password(password: str) -> bytes:
     """ returns a salted, hasged password """
     bytes = password.encode('utf-8')
     salt = bcrypt.gensalt()
