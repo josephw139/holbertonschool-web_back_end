@@ -26,7 +26,8 @@ if os.getenv('AUTH_TYPE') == 'basic_auth':
 def before_request():
     """ before request """
     if auth and auth.require_auth(
-        request.path, ['/api/v1/status/','/api/v1/unauthorized/', '/api/v1/forbidden/']):
+            request.path, ['/api/v1/status/', '/api/v1/unauthorized/',
+                           '/api/v1/forbidden/']):
 
         if auth.authorization_header(request) is None:
             abort(401)

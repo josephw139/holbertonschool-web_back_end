@@ -11,7 +11,7 @@ class Auth():
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ public method """
-        if  path is None:
+        if path is None:
             return True
         if not path.endswith('/'):
             path = path + '/'
