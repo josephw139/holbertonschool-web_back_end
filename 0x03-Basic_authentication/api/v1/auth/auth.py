@@ -11,19 +11,22 @@ class Auth():
 
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """ public method """
+        if  path is None:
+            return True
         if not path.endswith('/'):
             path = path + '/'
-        if path is None or excluded_paths is None or not excluded_paths:
+        if excluded_paths is None or not excluded_paths:
             return True
         if path in excluded_paths:
             return False
+        return True
 
     def authorization_header(self, request=None) -> str:
         """ header """
-        if request is None:
+        if request is None or request.headers.get('Authorization') is None:
             return None
-        if request.has_key('Authorization'):
-            return request['Authorization']
+        return request.headers.get('Authorization')
+
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ current user """
