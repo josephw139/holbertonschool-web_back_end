@@ -46,11 +46,11 @@ def login():
 def logout():
     """ logs out """
     session_id = request.cookies.get('session_id')
-    try:
-        user = AUTH.get_user_from_session_id(session_id)
+    user = AUTH.get_user_from_session_id(session_id)
+    if user and session_id:
         AUTH.destroy_session(session_id)
         return redirect('/')
-    except:
+    else:
         abort(403)
 
 
