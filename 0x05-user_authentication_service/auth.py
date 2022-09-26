@@ -19,7 +19,7 @@ class Auth:
     def __init__(self):
         self._db = DB()
 
-    def register_user(self, email: str, password: str):
+    def register_user(self, email: str, password: str) -> User:
         """ saves user to the db """
         try:
             self._db.find_user_by(email=email)
