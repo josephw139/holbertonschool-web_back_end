@@ -36,7 +36,7 @@ class Auth:
                 return True
             else:
                 return False
-        except:
+        except Exception:
             return False
 
     def create_session(self, email: str) -> str:
@@ -46,14 +46,14 @@ class Auth:
             session_id = _generate_uuid()
             self._db.update_user(user.id, session_id=session_id)
             return session_id
-        except:
+        except Exception:
             return None
 
     def get_user_from_session_id(self, session_id: str) -> User:
         """ gets user from session_id """
         try:
             return self._db.find_user_by(session_id=session_id)
-        except:
+        except Exception:
             return None
 
     def destroy_session(self, user_id: int) -> None:

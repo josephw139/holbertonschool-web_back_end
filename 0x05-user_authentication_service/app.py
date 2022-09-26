@@ -23,7 +23,7 @@ def users():
     try:
         AUTH.register_user(email, pwd)
         return jsonify({"email": email, "message": "user created"})
-    except:
+    except Exception:
         return (jsonify({"message": "email already registered"}), 400)
 
 
@@ -72,7 +72,7 @@ def get_reset_password_token():
         email = request.form.get('email')
         token = AUTH.get_reset_password_token(email)
         return (jsonify({"email": email, "reset_token": token}), 200)
-    except:
+    except Exception:
         abort(403)
 
 
@@ -84,8 +84,9 @@ def update_password():
         pwd = request.form.get('new_password')
         token = request.form.get('reset_token')
         AUTH.update_password(token, pwd)
-        return (jsonify({"email": email, "reset_token": "Password updated"}), 200)
-    except:
+        return (jsonify({"email": email,
+                         "reset_token": "Password updated"}), 200)
+    except Exception:
         abort(403)
 
 
