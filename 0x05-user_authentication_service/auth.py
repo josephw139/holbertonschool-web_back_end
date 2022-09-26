@@ -75,12 +75,12 @@ class Auth:
 
     def update_password(self, reset_token: str, password: str) -> None:
         """ updates the password """
-        user = self._db.find_user_by(reset_token=reset_token)
-        if not user:
+        try:
+            user = self._db.find_user_by(reset_token=reset_token)
+            pwd = _hash_password(password)
+            self._db.update_user(user.id, hashed_password=pwd, reset_token=None)
+        except Exception:
             raise ValueError
-        pwd = _hash_password(password)
-        self._db.update_user(user.id, hashed_password=pwd, reset_token=None)
-        return None
 
 
 def _hash_password(password: str) -> bytes:
