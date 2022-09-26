@@ -8,7 +8,7 @@ from xmlrpc.client import Boolean
 import bcrypt
 from db import DB
 from user import User
-from sqlalchemy.exc import NoResultFound
+from sqlalchemy.orm.exc import NoResultFound
 from uuid import uuid4
 
 
