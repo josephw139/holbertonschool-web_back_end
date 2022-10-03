@@ -5,6 +5,7 @@
 from http import client
 import unittest
 from unittest import mock
+from unittest.mock import patch
 from parameterized import parameterized, parameterized_class
 from utils import access_nested_map, get_json, memoize
 from client import GithubOrgClient
@@ -36,7 +37,7 @@ class TestGithubOrgClient(unittest.TestCase):
                              [{'test': 'one'}, {'test': 'two'}])
             mock_test.assert_called_once()
 
-    @mock.patch("client.get_json", return_value={'test': 'one'})
+    @patch("client.get_json", return_value={'test': 'one'})
     def test_public_repos(self, get_json):
         """Test public repos function"""
         with mock.patch('client.GithubOrgClient.public_repos',
