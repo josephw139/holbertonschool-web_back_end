@@ -67,10 +67,12 @@ def get_timezone():
         pass
     return app.config['BABEL_DEFAULT_TIMEZONE']
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def index():
     """ renders index template """
     return render_template('7-index.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
