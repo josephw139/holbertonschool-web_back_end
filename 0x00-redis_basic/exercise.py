@@ -72,3 +72,10 @@ class Cache():
             return fn(self._redis.get(key))
         return self._redis.get(key)
 
+    def get_str(self, key: str) -> str:
+        """converts string"""
+        return self.get(key, str)
+
+    def get_int(self, key: str) -> int:
+        """converts int"""
+        return self.get(key, int)
