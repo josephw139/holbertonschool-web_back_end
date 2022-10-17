@@ -1,0 +1,3 @@
+// counts all documents in school
+
+db.school.find().count()
