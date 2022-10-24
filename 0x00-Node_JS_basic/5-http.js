@@ -4,7 +4,6 @@ const http = require('http');
 const process = require('process');
 const countStudents = require('./3-read_file_async');
 
-
 const app = http.createServer(async (req, res) => {
   const url = req.url;
   if (url == '/') {
@@ -17,7 +16,7 @@ const app = http.createServer(async (req, res) => {
       res.write(`Number of students: ${values[0].length - 1}\n`);
       res.write(`Number of students in CS: ${values[1].length}. List: ${values[1].join(', ')}\n`);
       res.write(`Number of students in SWE: ${values[2].length}. List: ${values[2].join(', ')}`);
-    })
+    }).catch((error) => { res.write(`This is the list of our students\n${error}`); })
     res.end();
   }
 }).listen(1245);
