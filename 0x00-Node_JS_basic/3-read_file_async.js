@@ -1,6 +1,6 @@
 // Reading a file synchronously with Node JS
 
-const fs = require("fs");
+const fs = require('fs');
 
 const countStudents = async (file) => {
   let db;
@@ -10,30 +10,30 @@ const countStudents = async (file) => {
     throw new Error('Cannot load the database');
   }
 
-    let data = [];
-    let rows = db.split('\n');
+  const data = [];
+  const rows = db.split('\n');
 
-    rows.forEach(row => {
-      if (row.length > 0) {
-        data.push(row.split(','));
-      }
-    })
+  rows.forEach(row => {
+    if (row.length > 0) {
+      data.push(row.split(','));
+    }
+  });
 
-    let cs = [];
-    let swe = [];
-    data.forEach(row => {
-      if (row.includes('CS')) {
-        cs.push(row[0]);
-      }
-      if (row.includes('SWE')) {
-        swe.push(row[0]);
-      }
-    })
-    console.log(`Number of students: ${data.length - 1}`);
-    console.log(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`);
-    console.log(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`);
+  const cs = [];
+  const swe = [];
+  data.forEach(row => {
+    if (row.includes('CS')) {
+      cs.push(row[0]);
+    }
+    if (row.includes('SWE')) {
+      swe.push(row[0]);
+    }
+  })
+  console.log(`Number of students: ${data.length - 1}`);
+  console.log(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`);
+  console.log(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`);
 
-    return [data, cs, swe];
+  return [data, cs, swe];
 }
 
 module.exports = countStudents;
