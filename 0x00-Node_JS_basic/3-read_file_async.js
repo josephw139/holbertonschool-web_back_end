@@ -14,7 +14,9 @@ const countStudents = async (file) => {
     let rows = db.split('\n');
 
     rows.forEach(row => {
-      data.push(row.split(','));
+      if (row.length > 0) {
+        data.push(row.split(','));
+      }
     })
 
     let cs = [];
