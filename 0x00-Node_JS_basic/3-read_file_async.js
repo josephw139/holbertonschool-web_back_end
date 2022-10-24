@@ -13,7 +13,7 @@ const countStudents = async (file) => {
   const data = [];
   const rows = db.split('\n');
 
-  rows.forEach(row => {
+  rows.forEach((row) => {
     if (row.length > 0) {
       data.push(row.split(','));
     }
@@ -21,19 +21,19 @@ const countStudents = async (file) => {
 
   const cs = [];
   const swe = [];
-  data.forEach(row => {
+  data.forEach((row) => {
     if (row.includes('CS')) {
       cs.push(row[0]);
     }
     if (row.includes('SWE')) {
       swe.push(row[0]);
     }
-  })
+  });
   console.log(`Number of students: ${data.length - 1}`);
   console.log(`Number of students in CS: ${cs.length}. List: ${cs.join(', ')}`);
   console.log(`Number of students in SWE: ${swe.length}. List: ${swe.join(', ')}`);
 
   return [data, cs, swe];
-}
+};
 
 module.exports = countStudents;
