@@ -5,14 +5,13 @@ const process = require('process');
 const countStudents = require('./3-read_file_async');
 
 const app = http.createServer(async (req, res) => {
-  const url = req.url;
-  if (url == '/') {
+  if (req.url == '/') {
     res.write('Hello Holberton School!');
     res.end();
   }
-  if (url == '/students') {
+  if (req.url == '/students') {
     res.write('This is the list of our students\n');
-    await countStudents(process.argv[2]).then(values => {
+    await countStudents(process.argv[2]).then((values) => {
       res.write(`Number of students: ${values[0].length - 1}\n`);
       res.write(`Number of students in CS: ${values[1].length}. List: ${values[1].join(', ')}\n`);
       res.write(`Number of students in SWE: ${values[2].length}. List: ${values[2].join(', ')}`);
