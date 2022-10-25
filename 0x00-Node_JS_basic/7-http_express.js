@@ -15,7 +15,10 @@ app.get('/students', async (req, res) => {
       res.write(`Number of students: ${values[0].length - 1}\n`);
       res.write(`Number of students in CS: ${values[1].length}. List: ${values[1].join(', ')}\n`);
       res.write(`Number of students in SWE: ${values[2].length}. List: ${values[2].join(', ')}`);
-    })
+    }).catch(() => {
+      res.write('This is the list of our students\nCannot load the database');
+      res.end();
+    });
     res.end();
 })
 
