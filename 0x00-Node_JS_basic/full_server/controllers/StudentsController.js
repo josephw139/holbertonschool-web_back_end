@@ -3,7 +3,6 @@ import readDatabase from '../utils';
 
 
 class StudentsController {
-
   static getAllStudents(request, response) {
     response.status(200);
     readDatabase(process.argv[2]).then(values => {
@@ -23,7 +22,7 @@ class StudentsController {
       response.end();
       return;
     }
-    readDatabase(process.argv[2]).then(values => {
+    readDatabase(process.argv[2]).then((values) => {
       let num;
       if (major.major == 'CS') {
         num = 1;
