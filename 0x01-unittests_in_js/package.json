@@ -1,7 +1,7 @@
 {
     "dependencies": {
         "chai": "^4.3.6",
-        "sinon": "^14.0.0"
+        "sinon": "^14.0.1"
     },
     "name": "0x01-unittests_in_js",
     "description": "",
