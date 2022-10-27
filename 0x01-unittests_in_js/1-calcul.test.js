@@ -16,5 +16,6 @@ describe("calculateNumber", function() {
   it("checks divide", function() {
     assert.equal(calculateNumber('DIVIDE', -10, 2), -5);
     assert.equal(calculateNumber('DIVIDE', -9.7, 2.1), -5);
+    assert.equal(calculateNumber('DIVIDE', -9.7, 0), 'Error');
   });
 });
