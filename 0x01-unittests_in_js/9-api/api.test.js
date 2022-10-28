@@ -13,12 +13,14 @@ describe('app', () => {
   it('app test - GET /cart/id', (done) => {
     request('http://localhost:7865/cart/1', (error, response, body) => {
       expect(response.statusCode).to.equal(200);
+      done();
     })
   });
 
   it('app test - GET /cart/id - bad id', (done) => {
     request('http://localhost:7865/cart/no', (error, response, body) => {
       expect(response.statusCode).to.equal(404);
+      done();
     })
   })
 });
