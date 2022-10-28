@@ -13,6 +13,7 @@ describe('app', () => {
   it('app test - GET /cart/id', (done) => {
     request('http://localhost:7865/cart/1', (error, response, body) => {
       expect(response.statusCode).to.equal(200);
+      expect(body).to.equal('Payment methods for cart 1');
       done();
     })
   });
